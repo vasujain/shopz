@@ -5,12 +5,14 @@ ini_set('display_errors', 1);
 
 require 'bestbuy/BestBuy.php';
 require 'macys/Macys.php';
+//require 'firebase/recommendation.php';
+
 
 header('Content-Type: application/json');
+
 if (isset($_GET['store']) && isset($_GET['intent'])) {
     if ($_GET['store'] == 'bestbuy') {
         $bestbuy = new BestBuy();
-
         if ($_GET['intent'] == "products") {
             if (isset($_GET['search'])) {
                 print_r($bestbuy->getProductData($_GET['search']));
@@ -24,7 +26,6 @@ if (isset($_GET['store']) && isset($_GET['intent'])) {
         } else {
             echo "Please check API Parameters. Contact API Dev for details.";
         }
-
     } else if ($_GET['store'] == 'macys') {
         $macys = new Macys();
         if ($_GET['intent'] == "products") {
