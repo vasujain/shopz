@@ -5,8 +5,6 @@ ini_set('display_errors', 1);
 
 require 'bestbuy/BestBuy.php';
 require 'macys/Macys.php';
-//require 'firebase/recommendation.php';
-
 
 header('Content-Type: application/json');
 

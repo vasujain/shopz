@@ -25,9 +25,7 @@ define('FIREBASE_DEFAULT_PATH', "/recommendations");
     $recommendation = new stdClass();
     $recommendation->pid = $_GET['pid'];
     $flag = $_GET['flag'];
-    if($_GET['comment']) {
-        $recommendation->comment = $_GET['comment'];
-    }
+
 
     $firebaseJson = getFirebase();
 
@@ -41,6 +39,9 @@ define('FIREBASE_DEFAULT_PATH', "/recommendations");
             $recommendation->buyit = 0;
             $recommendation->forgetit = 1;
         }
+        if($_GET['comment']) {
+            $recommendation->comment = array($_GET['comment']);
+        }
         $postData = json_encode($recommendation);
         postFirebase($postData);
     } else {
@@ -51,6 +52,12 @@ define('FIREBASE_DEFAULT_PATH', "/recommendations");
         } else if($flag == "no") {
             $recommendation->forgetit = $fb->value->forgetit + 1;
             $recommendation->buyit = $fb->value->buyit;
+        }
+        if($_GET['comment']) {
+            $reComments = array();
+            $reComments = $fb->value->comment;
+            array_push($reComments, $_GET['comment']);
+            $recommendation->comment = $reComments;
         }
         $recommendation->pid = $fb->value->pid;
         $putData = json_encode($recommendation);
