@@ -17,7 +17,10 @@
 define('FIREBASE_URL', "https://shopz.firebaseio.com/");
 define('FIREBASE_TOKEN', "18neI3jkcqlkC0C7IXtay1E90HFUayhNAtvt6xId");
 define('FIREBASE_DEFAULT_PATH', "/recommendations");
-
+    if(isset($_POST) && isset($_POST['flag'])) {
+        $_GET['comment'] = $_POST['messageBox'];
+        $_GET['flag'] = $_POST['flag'];
+    }
     if(isset($_GET['intent']) && ($_GET['intent'] == "pidDetails") && isset($_GET['pid'])) {
         getProductByID($_GET['pid']);
     }
@@ -25,7 +28,6 @@ define('FIREBASE_DEFAULT_PATH', "/recommendations");
     $recommendation = new stdClass();
     $recommendation->pid = $_GET['pid'];
     $flag = $_GET['flag'];
-
 
     $firebaseJson = getFirebase();
 

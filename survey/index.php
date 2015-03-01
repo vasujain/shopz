@@ -1,3 +1,4 @@
+<?php ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +55,7 @@
     </nav>
 
     <!-- Team Section -->
-    <section id="team" class="bg-light-gray" style="padding-top: 10px !important;">
+    <section id="team1" class="bg-light-gray" style="padding-top: 10px !important; padding-bottom: 10px !important;" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 text-center"></div>
@@ -101,15 +102,19 @@
                 </div>
             </div>
             <div class="clearfix"></div>
+        </div>
+    </section>
+    <section id="team2" class="bg-light-gray" style="padding-top: 10px !important; padding-bottom: 10px !important;" >
+        <form action="../firebase/recommendation.php?pid=117" method="post">
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <input id="radio1" name="radios" value="all" checked="" type="radio">
+                        <input id="radio1" name="flag" value="yes" checked="" type="radio">
                         <label for="radio1" style="padding-right: 30px;padding-left: 30px;" class="fa fa-thumbs-o-up bigicon"> </label>
-                        <input id="radio2" name="radios" value="all" checked="" type="radio">
+                        <input id="radio2" name="flag" value="no" checked="" type="radio">
                         <label for="radio2" style="padding-right: 30px;padding-left: 30px;"  class="fa fa-thumbs-o-down bigicon"></label>
-                        
+
                     </div>
                 </div>
                 <div class="col-md-4"></div>
@@ -120,7 +125,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                            <textarea class="form-control" placeholder="Your Message *" id="messageBox" name="messageBox"></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
@@ -143,7 +148,8 @@
                 </div>
                 <div class="col-md-4"></div>
             </div>
-        </div>
+            </div>
+        </form>
     </section>
     
     <!-- Footer -->
@@ -188,8 +194,8 @@
     <script src="js/cbpAnimatedHeader.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+<!--    <script src="js/jqBootstrapValidation.js"></script>-->
+<!--    <script src="js/contact_me.js"></script>-->
 
     <!-- Custom Theme JavaScript -->
     <script src="js/agency.js"></script>
