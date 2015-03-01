@@ -74,17 +74,25 @@ static NSString * const kFirebaseURL = @"https://intense-fire-2616.firebaseio.co
 
 #pragma mark facebook login methods
 -(void)loginWithFB {
-    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile"]
-                                       allowLoginUI:YES
-                                  completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+    
+    
+    [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObjects: @"publish_actions",@"public_profile", nil]
+                                        defaultAudience:FBSessionDefaultAudienceEveryone
+                                        allowLoginUI:YES
+                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
                                       if (error) {
+                                          
                                           NSLog(@"Facebook login failed. Error: %@", error);
                                           [self.delegate authenticationHelper:self failedToLoginwithError:error];
+                                          
                                       } else if (state == FBSessionStateOpen) {
+                                          
                                           NSString *accessToken = session.accessTokenData.accessToken;
+                                          
                                           [self.rootRef authWithOAuthProvider:@"facebook"
                                                                         token:accessToken
                                                           withCompletionBlock:^(NSError *error, FAuthData *authData) {
+                                          
                                                               if (error) {
                                                                   [self.delegate authenticationHelper:self failedToLoginwithError:error];
                                                                   NSLog(@"Login failed. %@", error);
@@ -93,6 +101,7 @@ static NSString * const kFirebaseURL = @"https://intense-fire-2616.firebaseio.co
                                                                   NSLog(@"Logged in! %@", authData);
                                                               }
                                                               NSLog(@"auth data %@",authData);
+
                                                           }];
                                       }
                                   }];

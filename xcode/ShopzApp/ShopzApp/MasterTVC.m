@@ -33,6 +33,7 @@
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow
                                   animated:YES];
+
 }
 
 -(UITableView *)tableView {
@@ -74,5 +75,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
 }
+
+
 
 @end

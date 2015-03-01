@@ -14,6 +14,7 @@
 ///Bottom tableview constraint so we can remover it later.
 @property (nonatomic,strong) NSLayoutConstraint *bottomConstraint;
 
+
 /**
  * Initialize with a certain type of table view style
  * @author Francisco Magdaleno

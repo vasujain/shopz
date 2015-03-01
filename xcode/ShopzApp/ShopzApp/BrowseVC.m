@@ -40,7 +40,7 @@
 @end
 
 @implementation BrowseVC
-#define HEADER_HEIGHT 60
+#define HEADER_HEIGHT 0
 #define CELL_HEIGHT 275
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,12 +49,15 @@
     NSString *identifier = NSStringFromClass([ProductCell class]);
     UINib *nib = [UINib nibWithNibName:identifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:identifier];
-    [self startFakeItems];
+//    [self startFakeItems];
+    
+
 
     //Send Real query to store
     self.searchResults = nil;
-    self.selectedStore = @"macys";
-    [self searchQueryToStore: self.selectedStore];
+//    self.selectedStore = @"macys";
+    self.isLoading = true;
+    [self searchQueryToStore: self.store];
 }
 
 -(void)startFakeItems {
@@ -104,8 +107,8 @@
         button.layer.cornerRadius = 3.0f;
         button.clipsToBounds = YES;
         //add the button to the header
-        [_headerView addSubview:button];
-        [_headerView addConstraints:[button positionToFillSuperViewWithPadding:8]];
+//        [_headerView addSubview:button];
+ //       [_headerView addConstraints:[button positionToFillSuperViewWithPadding:8]];
     }
     return _headerView;
 }
@@ -120,7 +123,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return HEADER_HEIGHT;
+        return 0.001f;
     }
     return 0.001f;
 }
@@ -166,8 +169,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Product *product = self.products[indexPath.row];
-    [self showProductDetails:product];
+//    Product *product = self.products[indexPath.row];
+    ProductModel* selectedProduct = self.searchResults.products[indexPath.row];
+    [self showProductDetails:selectedProduct];
 }
 
 #pragma mark button methods
@@ -197,12 +201,15 @@
    
 }
 
--(void)showProductDetails:(Product *)product {
+-(void)showProductDetails:(ProductModel *)product {
+
     ProductDetailsTVC *controller = [[ProductDetailsTVC alloc]initWithTableViewStyle:UITableViewStyleGrouped];
     [controller setProduct:product];
     UINavigationController *navcontroller = [[UINavigationController alloc]initWithRootViewController:controller];
     navcontroller.navigationBar.translucent = NO;
     [navcontroller.navigationBar setBarTintColor:[UIColor whiteColor]];
+    
+    //Navigate to productDetailsVC
     dispatch_async(dispatch_get_main_queue(), ^{
         [self presentViewController:navcontroller animated:YES completion:nil];
     });
@@ -225,30 +232,22 @@
 -(void) searchQueryToStore: (NSString*)toStore
 {
     
-    [SearchManager searchForProduct:nil fromStore:toStore filter:nil success:^(id responseObject) {
+    [SearchManager searchForProduct:nil fromStore:toStore filter:self.searchString success:^(id responseObject) {
 
         SearchResultsModel* searchResults = (SearchResultsModel*) responseObject;
         NSLog(@"ouput : %@" , searchResults.toJSONString);
         self.searchResults = searchResults;
-        /*
-        if([toStore isEqualToString:@"bestbuy"])
-        {
-            SearchResultsModel* searchResults = (SearchResultsModel*) responseObject;
-            NSLog(@"ouput : %@" , searchResults.toJSONString);
-            self.searchResults = searchResults;
-        }else if([toStore isEqualToString:@"macys"]){
-            MacysSearchResultModel* searchResults = (MacysSearchResultModel*) responseObject;
-            NSLog(@"ouput : %@" , searchResults.toJSONString);
-            self.macyssearchResults = searchResults;
-            
-        }
-         */
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+                self.isLoading = false;
         });
     } failure:^(NSError *error) {
         NSLog(@"error: %@", error);
     }];
+    
+    
+    
     
 }
 
@@ -263,6 +262,8 @@
         [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     }
 }
+
+
 
 
 @end

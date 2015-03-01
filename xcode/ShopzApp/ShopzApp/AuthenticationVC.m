@@ -38,18 +38,18 @@
 
 #pragma mark button methods
 - (IBAction)fbButtonPressed:(UIButton *)sender {
-    [ApplicationDelegate showLoggedInViews];
+    //[ApplicationDelegate showLoggedInViews];
 #warning removed for testing
-//    [self showSpinner];
-//    [[AuthenticationHelper sharedInstance] loginWithFB];
+    [self showSpinner];
+    [[AuthenticationHelper sharedInstance] loginWithFB];
 }
 
 - (IBAction)twitterButtonPressed:(UIButton *)sender {
-    [ApplicationDelegate showLoggedInViews];
+//    [ApplicationDelegate showLoggedInViews];
 
 #warning removed for testing
-//    [self showSpinner];
-//    [[AuthenticationHelper sharedInstance] loginWithTwitter];
+    [self showSpinner];
+    [[AuthenticationHelper sharedInstance] loginWithTwitter];
 }
 
 #pragma mark authentication delegate

@@ -27,9 +27,13 @@
 //    [formatter setDateFormat:@"dd/MMM hh:mm a"];
 //    NSString *dateString = [formatter stringFromDate:dateToShow];
 //    //get the string from the date
-    NSString *creatorText = [NSString stringWithFormat:@"Created at %@ %@",review.reviewFriendName,review.reviewCreationDate];
+    NSString *creatorText = [NSString stringWithFormat:@"Created by %@  at %@",
+                                            review.reviewFriendName,
+                                            review.reviewCreationDate];
+    
     [self.creationLabel setText:creatorText];
     [self.contentLabel setText:review.reviewText];
+    
 }
 
 

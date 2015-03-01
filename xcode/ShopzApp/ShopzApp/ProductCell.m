@@ -9,9 +9,9 @@
 #import "ProductCell.h"
 //classes
 #import "ProductModel.h"
-#import "ProductModel.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "SearchManager.h"
+#import "RecommendationCollectionModel.h"
 @implementation ProductCell
 
 -(void)prepareForReuse {
@@ -20,6 +20,8 @@
     self.storeNameLabel.text = nil;
 //    self.groupCountLabel.text = nil;
 //    self.groupImageView.image = nil;
+    
+    
 }
 
 -(void)awakeFromNib {
@@ -43,8 +45,28 @@
                                    } failure:nil];
     [self.productNameLabel setText:product.name];
 
-#warning real store
     [self.storeNameLabel setText:[NSString stringWithFormat:@"by %@",product.fromStore]];
+    
+    
+    //Query server for recommendations
+    [SearchManager queryRecommendationsForProduct: [NSString stringWithFormat:@"%@",product.sku ]
+                                          success:^(id responseObject) {
+        
+        RecommendationCollectionModel* searchResults = (RecommendationCollectionModel*) responseObject;
+        NSLog(@"output : %@" , searchResults.toJSONString);
+        
+        //Update UI on main queue
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            long count = searchResults.buyit.integerValue + searchResults.forgetit.integerValue;
+            weakCell.groupCountLabel.text = [NSString stringWithFormat:@"%ld", count];
+            [weakCell setNeedsLayout];
+            
+        });
+    } failure:^(NSError *error) {
+        NSLog(@"query recommendations error: %@", error);
+    }];
+
     
     
 }

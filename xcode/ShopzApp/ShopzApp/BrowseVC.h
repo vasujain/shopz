@@ -13,4 +13,6 @@
 @property (nonatomic,strong) NSString *store;
 ///Category to search.
 @property (nonatomic,strong) NSString *category;
+
+@property (nonatomic, strong) NSString * searchString;
 @end

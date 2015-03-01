@@ -18,7 +18,8 @@
 
 @interface HomeVC () <PickerControllerDelegate,AuthenticationHelperDelegate>
 ///Label with the title question
-@property (nonatomic,strong) UILabel *questionLabel;
+//@property (nonatomic,strong) UILabel *questionLabel;
+@property (nonatomic,strong) UITextField *questionLabel;
 ///Free text textfield. Non editable.
 @property (nonatomic,strong) UITextField *searchTextField;
 ///Triggers the choose categories button.
@@ -46,7 +47,8 @@
 }
 
 #pragma mark create ui methods
--(UILabel *)questionLabel {
+-(UITextField *)questionLabel {
+    /*
     if (!_questionLabel) {
         _questionLabel = [[UILabel alloc]init];
         _questionLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -57,6 +59,18 @@
         [_questionLabel setText:@"What are you looking for today?"];
     }
     return _questionLabel;
+    */
+    if (!_questionLabel) {
+        _questionLabel = [[UITextField alloc]init];
+        _questionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        [_questionLabel setBorderStyle:UITextBorderStyleRoundedRect];
+        [_questionLabel setFont:[UIFont fontWithName:FONT_REGULAR size:18]];
+        [_questionLabel setTextColor:[UIColor darkGrayColor]];
+        [_questionLabel setPlaceholder:@"Enter search query"];
+        [_questionLabel positionHeight:40];
+    }
+    return _questionLabel;
+
 }
 
 -(UIButton *)chooseCategoryButton {
@@ -121,26 +135,30 @@
 
 -(void)createUIElements {
     //add the top question label first
+    
     [self.view addSubview:self.questionLabel];
     [self.view addConstraints:[self.questionLabel positionAlignTopEdgeOfSuperViewWithPadding:20]];
     [self.view addConstraints:[self.questionLabel positionAlignLeadingEdgeOfSuperViewWithPadding:20]];
     [self.view addConstraints:[self.questionLabel positionAlignTrailingEdgeOfSuperViewWithPadding:20]];
     //add the textfield below the question label
+    /*
     [self.view addSubview:self.searchTextField];
     [self.view addConstraints:[self. searchTextField positionBelowOtherView:self.questionLabel withPadding:20]];
     [self.view addConstraints:[self.searchTextField positionAlignTrailingEdgeOfSuperViewWithPadding:20]];
+     */
     //add the button, align it y to the textfield and the trailing edge of the superview
     [self.view addSubview:self.chooseCategoryButton];
+    [self.view addConstraints:[self. chooseCategoryButton positionBelowOtherView:self.questionLabel withPadding:20]];
     [self.view addConstraints:[self.chooseCategoryButton positionAlignLeadingEdgeOfSuperViewWithPadding:20]];
-    [self.view addConstraints:[self.chooseCategoryButton positionCenterYToCenterYForOtherView:self.searchTextField offSet:0]];
-    [self.view addConstraints:[self.chooseCategoryButton positionToTrailOtherView:self.searchTextField withPadding:-10]];
+//    [self.view addConstraints:[self.chooseCategoryButton positionCenterYToCenterYForOtherView:self.searchTextField offSet:0]];
+    [self.view addConstraints:[self.chooseCategoryButton positionAlignTrailingEdgeOfSuperViewWithPadding: 20]];
     //make the button half the width of the search
-    [self.view addConstraints:[self.chooseCategoryButton sameWidthWithOtherView:self.searchTextField withRatio:1]];
+    [self.view addConstraints:[self.chooseCategoryButton sameWidthWithOtherView:self.chooseCategoryButton withRatio:1]];
     //add the submit search button aligning edges with the textfield and the button.
     [self.view addSubview:self.submitSearchButton];
-    [self.view addConstraints:[self.submitSearchButton positionBelowOtherView:self.searchTextField withPadding:10]];
+    [self.view addConstraints:[self.submitSearchButton positionBelowOtherView:self.chooseCategoryButton withPadding:10]];
     [self.view addConstraints:[self.submitSearchButton positionAlignLeadingEdgesOfOtherView:self.chooseCategoryButton withPadding:0]];
-    [self.view addConstraints:[self.submitSearchButton positionAlignTrailingEdgesOfOtherView:self.searchTextField withPadding:0]];
+    [self.view addConstraints:[self.submitSearchButton positionAlignTrailingEdgesOfOtherView:self.chooseCategoryButton withPadding:0]];
     [self.submitSearchButton positionHeight:44];
 }
 
@@ -194,6 +212,7 @@
     BrowseVC *controller = [[BrowseVC alloc]initWithTableViewStyle:UITableViewStyleGrouped];
     [controller setStore:[self.selectedInfo objectForKey:PICKER_ID_KEY]];
     [controller setCategory:self.searchTextField.text];
+    [controller setSearchString:self.questionLabel.text];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

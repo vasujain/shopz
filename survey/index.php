@@ -57,48 +57,66 @@
     <!-- Team Section -->
     <section id="team1" class="bg-light-gray" style="padding-top: 10px !important; padding-bottom: 10px !important;" >
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 text-center"></div>
-                <div class="col-lg-4 text-center">
-                    <h2 class="section-heading"></h2>
-                    <h3 class="section-subheading text-muted" style="font-size: 22px; !important;">Jess Wants Your Help.</h3>
+
+            <div class="row" style="margin-top: 50px !important; margin-bottom: 10px !important;">
+                <div class="col-sm-2">
                 </div>
-                <div class="col-lg-4 text-center"></div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <div class="team-member">
                         <img src="img/team/1.jpg" class="img-responsive img-circle" alt="">
-                        <h4>Jessica Day</h4>
+                        <h4>Hello, Jessica Day</h4>
                         <p class="text-muted"></p>
-                        <ul class="list-inline social-buttons">
-                            <li><a href="#"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
+
+                    </div>
+                </div>
+                <?php
+                    require '../macys/Macys.php';
+                    $macysObj = new Macys();
+                    $prod = json_decode($macysObj->searchCatalog($_GET['pid']));
+                    // print_r($prod->searchresultgroups[0]->products->product[0]);
+                ?>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="<?php echo $prod->searchresultgroups[0]->products->product[0]->image[0]->imageurl; ?>" class="img-responsive img-square" alt="">
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img src="img/team/bose.jpg" class="img-responsive img-square" alt="">
-                        <h4></h4>
-                        <p class="text-muted"></p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img src="img/team/Boseinfo.png" class="img-responsive img-square" alt="">
-                        <h4></h4>
+                        <h3>
+                            <?php
+                                echo $prod->searchresultgroups[0]->products->product[0]->summary->brand . ", " . $prod->searchresultgroups[0]->products->product[0]->summary->producttype ;
+                            ?>
+                        </h3>
+                        <h4>
+                            <?php
+                            echo $prod->searchresultgroups[0]->products->product[0]->summary->name ;
+                            ?>
+                            <p class="text-muted" style="padding-top: 20px; font-size: 20px"><b>$
+                                    <?php
+                                        echo $prod->searchresultgroups[0]->products->product[0]->price->regular->value;
+                                    ?>
+                                </b>
+                            </p>
+                            <p>
+                                <a href="<?php echo $prod->searchresultgroups[0]->products->product[0]->summary->producturl;?>">Product URL</a>
+                            </p>
+                        </h4>
                         <p class="text-muted"></p>
                     </div>
                 </div>
             </div>
+
+            <div class="row" style="margin-top: 10px !important; margin-bottom: 10px !important;">
+                <div class="col-lg-4 text-center"></div>
+                <div class="col-lg-4 text-center">
+                    <h3 class="section-subheading text-muted" style="font-size: 22px; !important; margin-bottom: 1px !important;">Jess Wants Your Help,</h3>
+                </div>
+                <div class="col-lg-4 text-center"></div>
+            </div>
+
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">"I'm interested in these headphones, and remember that you've got a pair. Do you like them? Would you recommend them?"</p>
+                    <p class="large text-muted">"I'm interested in purchasing this <?php echo $prod->searchresultgroups[0]->products->product[0]->summary->producttype; ?>, Would you recommend them?"</p>
                 </div>
             </div>
             <div class="clearfix"></div>

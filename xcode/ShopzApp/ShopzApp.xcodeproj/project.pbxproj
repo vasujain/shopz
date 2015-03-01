@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3933CB861AA32429004B91E5 /* MacysImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3933CB851AA32429004B91E5 /* MacysImageModel.m */; };
+		3933CB891AA3819B004B91E5 /* RecommendationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3933CB881AA3819B004B91E5 /* RecommendationModel.m */; };
+		3933CB8C1AA38249004B91E5 /* RecommendationCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3933CB8B1AA38249004B91E5 /* RecommendationCollectionModel.m */; };
 		396AD95C1AA2CEE300B41ED2 /* SearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD9561AA2CEE300B41ED2 /* SearchManager.m */; };
 		396AD95D1AA2CEE300B41ED2 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD9591AA2CEE300B41ED2 /* ProductModel.m */; };
 		396AD95E1AA2CEE300B41ED2 /* SearchResultsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD95B1AA2CEE300B41ED2 /* SearchResultsModel.m */; };
@@ -16,6 +18,7 @@
 		396AD9671AA2E66400B41ED2 /* CategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD9661AA2E66400B41ED2 /* CategoryModel.m */; };
 		396AD96A1AA2E81600B41ED2 /* MacysSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD9691AA2E81600B41ED2 /* MacysSearchResultModel.m */; };
 		396AD96D1AA2F20A00B41ED2 /* MacyCategoriesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 396AD96C1AA2F20A00B41ED2 /* MacyCategoriesModel.m */; };
+		397CFF421AA3ADD4005FBD5C /* ToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = 397CFF411AA3ADD4005FBD5C /* ToastView.m */; };
 		44F343FCA8DC3549078238FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C21BC951894E7AB7A7E71730 /* libPods.a */; };
 		973B3D671AA2F86900461518 /* AuthenticationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 973B3D661AA2F86900461518 /* AuthenticationHelper.m */; };
 		973B3D6A1AA2F8A500461518 /* TwitterAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 973B3D691AA2F8A500461518 /* TwitterAuthHelper.m */; };
@@ -68,6 +71,10 @@
 		1B50F0E41E04BB2329AF9ACD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3933CB841AA32429004B91E5 /* MacysImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacysImageModel.h; sourceTree = "<group>"; };
 		3933CB851AA32429004B91E5 /* MacysImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacysImageModel.m; sourceTree = "<group>"; };
+		3933CB871AA3819B004B91E5 /* RecommendationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationModel.h; sourceTree = "<group>"; };
+		3933CB881AA3819B004B91E5 /* RecommendationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationModel.m; sourceTree = "<group>"; };
+		3933CB8A1AA38249004B91E5 /* RecommendationCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationCollectionModel.h; sourceTree = "<group>"; };
+		3933CB8B1AA38249004B91E5 /* RecommendationCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationCollectionModel.m; sourceTree = "<group>"; };
 		396AD9551AA2CEE300B41ED2 /* SearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchManager.h; sourceTree = "<group>"; };
 		396AD9561AA2CEE300B41ED2 /* SearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchManager.m; sourceTree = "<group>"; };
 		396AD9581AA2CEE300B41ED2 /* ProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductModel.h; sourceTree = "<group>"; };
@@ -84,6 +91,8 @@
 		396AD9691AA2E81600B41ED2 /* MacysSearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacysSearchResultModel.m; sourceTree = "<group>"; };
 		396AD96B1AA2F20A00B41ED2 /* MacyCategoriesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacyCategoriesModel.h; sourceTree = "<group>"; };
 		396AD96C1AA2F20A00B41ED2 /* MacyCategoriesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacyCategoriesModel.m; sourceTree = "<group>"; };
+		397CFF401AA3ADD4005FBD5C /* ToastView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastView.h; sourceTree = "<group>"; };
+		397CFF411AA3ADD4005FBD5C /* ToastView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastView.m; sourceTree = "<group>"; };
 		973B3D651AA2F86900461518 /* AuthenticationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationHelper.h; sourceTree = "<group>"; };
 		973B3D661AA2F86900461518 /* AuthenticationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationHelper.m; sourceTree = "<group>"; };
 		973B3D681AA2F8A500461518 /* TwitterAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterAuthHelper.h; sourceTree = "<group>"; };
@@ -194,6 +203,10 @@
 				396AD9691AA2E81600B41ED2 /* MacysSearchResultModel.m */,
 				396AD96B1AA2F20A00B41ED2 /* MacyCategoriesModel.h */,
 				396AD96C1AA2F20A00B41ED2 /* MacyCategoriesModel.m */,
+				3933CB871AA3819B004B91E5 /* RecommendationModel.h */,
+				3933CB881AA3819B004B91E5 /* RecommendationModel.m */,
+				3933CB8A1AA38249004B91E5 /* RecommendationCollectionModel.h */,
+				3933CB8B1AA38249004B91E5 /* RecommendationCollectionModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -403,6 +416,8 @@
 				97C9BA771AA27F0700E1041A /* ProductDetailHeaderView.h */,
 				97C9BA781AA27F0700E1041A /* ProductDetailHeaderView.m */,
 				97C9BA7A1AA27F1A00E1041A /* ProductDetailHeaderView.xib */,
+				397CFF401AA3ADD4005FBD5C /* ToastView.h */,
+				397CFF411AA3ADD4005FBD5C /* ToastView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -555,6 +570,7 @@
 				97C9BA751AA2757900E1041A /* NSObject+NullObjects.m in Sources */,
 				97B091DB1AA1D9EB0096A222 /* CartVC.m in Sources */,
 				97C9BA841AA2AFDE00E1041A /* Review.m in Sources */,
+				3933CB8C1AA38249004B91E5 /* RecommendationCollectionModel.m in Sources */,
 				97B091CF1AA1C9150096A222 /* MasterVC.m in Sources */,
 				97C9BA711AA272F200E1041A /* Product.m in Sources */,
 				396AD9611AA2CEFF00B41ED2 /* JSONValueTransformer+NSUrl.m in Sources */,
@@ -567,6 +583,7 @@
 				97B091E21AA1DE9C0096A222 /* CustomButtons.m in Sources */,
 				97B091EC1AA1E1220096A222 /* UIImage+ImageEffects.m in Sources */,
 				97B091DF1AA1D9F90096A222 /* LikedVC.m in Sources */,
+				3933CB891AA3819B004B91E5 /* RecommendationModel.m in Sources */,
 				97C9BA801AA2AEB100E1041A /* ProductReviewCell.m in Sources */,
 				396AD95E1AA2CEE300B41ED2 /* SearchResultsModel.m in Sources */,
 				973B3D671AA2F86900461518 /* AuthenticationHelper.m in Sources */,
@@ -574,6 +591,7 @@
 				97C9BA791AA27F0700E1041A /* ProductDetailHeaderView.m in Sources */,
 				975EC2171AA19F7D009EE6F0 /* AppDelegate.m in Sources */,
 				975EC2141AA19F7D009EE6F0 /* main.m in Sources */,
+				397CFF421AA3ADD4005FBD5C /* ToastView.m in Sources */,
 				97B091C71AA1C58B0096A222 /* UIView+LayoutConstraints.m in Sources */,
 				396AD95D1AA2CEE300B41ED2 /* ProductModel.m in Sources */,
 				3933CB861AA32429004B91E5 /* MacysImageModel.m in Sources */,

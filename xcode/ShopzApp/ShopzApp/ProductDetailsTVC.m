@@ -20,6 +20,8 @@
 
 //cells
 #import "ProductReviewCell.h"
+#import "SearchManager.h"
+#import "RecommendationCollectionModel.h"
 
 @interface ProductDetailsTVC ()
 
@@ -49,12 +51,36 @@
     UINib *nib = [UINib nibWithNibName:identifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:identifier];
     [self createBuyButton];
+    
+}
+
+-(void)queryRecommendations
+{
+    __weak ProductDetailsTVC* weakSelf = self;
+    [SearchManager queryRecommendationsForProduct: [NSString stringWithFormat:@"%@",self.product.sku ]
+                                          success:^(id responseObject) {
+                                              
+                                              RecommendationCollectionModel* searchResults = (RecommendationCollectionModel*) responseObject;
+                                              NSLog(@"output : %@" , searchResults.toJSONString);
+                                              
+                                              [weakSelf createReviewsWithRecommendationCollection: searchResults];
+                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                  
+                                                  [weakSelf.tableView reloadData];
+                                                  
+                                              });
+                                          } failure:^(NSError *error) {
+                                              NSLog(@"error: %@", error);
+                                          }];
+
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
-    [self createFakeReviews];
+    [self queryRecommendations];
+//    [self.tableView reloadData];
+//    [self createFakeReviews];
 }
 
 -(void)createBuyButton {
@@ -66,15 +92,39 @@
     [self.view addConstraints:[self.buyButton positionAlignLeadingEdgeOfSuperView]];
     [self.view addConstraints:[self.buyButton positionBelowOtherView:self.tableView withPadding:0]];
     [self.buyButton positionHeight:50];
+    
+}
+
+- (NSString*)dateToString:(NSDate*) date
+{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"MMMM dd, yyyy"];
+    return [format stringFromDate:date];
 }
 
 -(void)createFakeReviews {
+    
     NSMutableArray *mutableReviews = [NSMutableArray array];
     for (int i = 0; i < 5; i++) {
         Review *review = [Review reviewWithInfo:@{REVIEW_FRIEND_NAME_KEY:@"Paco",
                                                   REVIEW_CREATION_DATE_KEY:@"24/12/2015",
                                                   REVIEW_TEXT_KEY:@"I have five of these!"}];
         [mutableReviews addObject:review];
+    }
+    self.reviews = mutableReviews;
+}
+
+
+-(void)createReviewsWithRecommendationCollection:(RecommendationCollectionModel*) collection {
+    
+    NSArray* comments = collection.comment;
+    NSMutableArray *mutableReviews = [NSMutableArray array];
+    for (NSString* comment in collection.comment) {
+        Review *review = [Review reviewWithInfo:@{REVIEW_FRIEND_NAME_KEY:@"Friend",
+                                                  REVIEW_CREATION_DATE_KEY:[self dateToString: [NSDate date]],
+                                                  REVIEW_TEXT_KEY:comment}];
+        [mutableReviews addObject:review];
+
     }
     self.reviews = mutableReviews;
 }

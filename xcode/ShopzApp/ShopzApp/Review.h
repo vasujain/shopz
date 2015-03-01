@@ -20,7 +20,8 @@
 @property (nonatomic,strong) NSString *reviewCreationDate;
 ///Review content
 @property (nonatomic,strong) NSString *reviewText;
-
+//ThumbsDown
+@property (nonatomic,assign) BOOL thumbsUp;
 /**
  * Creates a review instance.
  * @author Francisco Magdaleno

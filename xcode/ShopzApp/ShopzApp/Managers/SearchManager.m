@@ -8,10 +8,14 @@
 
 #import "SearchManager.h"
 
+
 //static NSString * const BaseURLString = @"http://brk.im/src/launch/?store=bestbuy";
 static NSString * const BaseURLString = @"http://brk.im/src/launch/?";
 static NSString* const ProductSearchString = @"http://brk.im/src/launch/?store=%@,intent=products";
 static NSString* const CategorySearchString = @"http://brk.im/src/launch/?store=%@,intent=categories";
+//static NSString* const RecoQueryString = @"http://brk.im/src/launch/?store=%@,intent=categories";
+
+static NSString* const RecoQueryString = @"http://brk.im/src/launch/firebase/recommendation.php?intent=pidDetails";
 
 // http://shopz.club/?";
 
@@ -19,14 +23,21 @@ static NSString* const CategorySearchString = @"http://brk.im/src/launch/?store=
 
 
 
++ (NSString*) escapeString: (NSString*) string
+{
+    NSString *escapedString = [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
+    NSLog(@"escapedString: %@", escapedString);
+    return escapedString;
+}
+
 + (void) searchForProduct: (NSString*) searchFor
                                fromStore:(NSString* ) store
                                   filter: (NSString*) filter
                                  success:(void (^)( id responseObject))success
                                  failure:(void (^)(NSError *error))failure
 {
-    NSString *string = [NSString stringWithFormat:@"%@store=%@&intent=products", BaseURLString,store];
-    NSURL *url = [NSURL URLWithString:string];
+    NSString *string = [NSString stringWithFormat:@"%@store=%@&intent=products&search=%@", BaseURLString,store, filter];
+    NSURL *url = [NSURL URLWithString:string];//[self escapeString:string]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
     
@@ -73,6 +84,42 @@ static NSString* const CategorySearchString = @"http://brk.im/src/launch/?store=
     }];
     
     [operation start];
+}
+
+
++ (void) queryRecommendationsForProduct: (NSString*) pid
+                  success:(void (^)( id responseObject))success
+                  failure:(void (^)(NSError *error))failure
+{
+    
+    if([pid isEqualToString:@"431361"])
+    {
+        int i = 0;
+    }
+    
+    NSString *string = [NSString stringWithFormat:@"%@&pid=%@", RecoQueryString,pid];
+    NSURL *url = [NSURL URLWithString:string];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSError* err = nil;
+        RecommendationCollectionModel* srchResult = [[RecommendationCollectionModel alloc]initWithDictionary:responseObject error:&err];
+        success( srchResult);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"products request failed with error %@ ", error);
+        failure(error);
+        
+    }];
+    
+    [operation start];
+
 }
 
 
