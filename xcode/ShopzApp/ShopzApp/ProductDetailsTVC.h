@@ -14,4 +14,7 @@
 ///Product to display.
 @property (nonatomic,strong) ProductModel *product;
 
+- (IBAction)buyButtonPressed:(UIButton *)sender;
+
+
 @end

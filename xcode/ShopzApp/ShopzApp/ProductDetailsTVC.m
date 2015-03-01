@@ -91,6 +91,7 @@
     [self.view addConstraints:[self.buyButton positionAlignTrailingEdgeOfSuperView]];
     [self.view addConstraints:[self.buyButton positionAlignLeadingEdgeOfSuperView]];
     [self.view addConstraints:[self.buyButton positionBelowOtherView:self.tableView withPadding:0]];
+    
     [self.buyButton positionHeight:50];
     
 }
@@ -152,9 +153,19 @@
         [_buyButton.titleLabel setFont:[UIFont fontWithName:FONT_REGULAR size:20]];
         [_buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_buyButton setTitle:@"Buy $35" forState:UIControlStateNormal];
+        [_buyButton addTarget:self
+                       action:@selector(buyButtonPressed:)
+           forControlEvents:UIControlEventTouchUpInside];
     }
     return _buyButton;
 }
+
+
+- (IBAction)buyButtonPressed:(UIButton *)sender {
+    
+    [[UIApplication sharedApplication] openURL:self.product.url];
+}
+
 
 -(ProductReviewCell *)prototypeCell {
     if (!_prototypeCell) {

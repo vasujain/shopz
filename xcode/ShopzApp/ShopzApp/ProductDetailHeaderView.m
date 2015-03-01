@@ -188,7 +188,7 @@ const static NSString* RecommendationUrl = @"http://brk.im/src/launch/survey/?";
     FBSession* sessionActive = FBSession.activeSession;
 
     
-    NSLog(@"accessTOken: %@", sessionActive.accessTokenData.accessToken);
+    NSLog(@"accessToken: %@", sessionActive.accessTokenData.accessToken);
     
     NSString* recLink = [NSString stringWithFormat:@"%@&pid=%@", RecommendationUrl, self.product.sku ];
     

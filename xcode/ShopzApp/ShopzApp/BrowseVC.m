@@ -40,8 +40,8 @@
 @end
 
 @implementation BrowseVC
-#define HEADER_HEIGHT 0
-#define CELL_HEIGHT 275
+#define HEADER_HEIGHT 0.001f
+#define CELL_HEIGHT 220
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self backArrownButton];
@@ -244,6 +244,8 @@
         });
     } failure:^(NSError *error) {
         NSLog(@"error: %@", error);
+        self.isLoading = false;
+
     }];
     
     

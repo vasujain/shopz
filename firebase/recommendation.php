@@ -95,7 +95,9 @@ function postFirebase($postData) {
     header('Content-Type: application/json');
     if (empty($result)) die("Error: No response.");
     else {
-        getProductByID($_GET['pid']);
+        //        header('Location : http://brk.im/src/launch/home.html');
+        header("Location: http://brk.im/src/launch/thankyou.html"); /* Redirect browser */
+        exit();getProductByID($_GET['pid']);
     }
 }
 
@@ -111,7 +113,8 @@ function putFirebase($putData, $key) {
     header('Content-Type: application/json');
     if (empty($result)) die("Error: No response.");
     else {
-        print_r($result);
+        header("Location: http://brk.im/src/launch/thankyou.html"); /* Redirect browser */
+        exit();getProductByID($_GET['pid']);print_r($result);
     }
 }
 
