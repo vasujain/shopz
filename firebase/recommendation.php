@@ -20,6 +20,10 @@ define('FIREBASE_DEFAULT_PATH', "/recommendations");
     if(isset($_POST) && isset($_POST['flag'])) {
         $_GET['comment'] = $_POST['messageBox'];
         $_GET['flag'] = $_POST['flag'];
+        if(!isset($_GET['pid'])) {
+            echo "Error.. Invalid or Null Product Id passed";
+            exit;
+        }
     }
     if(isset($_GET['intent']) && ($_GET['intent'] == "pidDetails") && isset($_GET['pid'])) {
         getProductByID($_GET['pid']);
@@ -91,7 +95,7 @@ function postFirebase($postData) {
     header('Content-Type: application/json');
     if (empty($result)) die("Error: No response.");
     else {
-        print_r($result);
+        getProductByID($_GET['pid']);
     }
 }
 

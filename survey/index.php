@@ -105,7 +105,7 @@
         </div>
     </section>
     <section id="team2" class="bg-light-gray" style="padding-top: 10px !important; padding-bottom: 10px !important;" >
-        <form action="../firebase/recommendation.php?pid=117" method="post">
+        <form action="../firebase/recommendation.php?pid=<?php echo $_GET['pid']; ?>" method="post">
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-3">
