@@ -93,7 +93,11 @@
                             ?>
                             <p class="text-muted" style="padding-top: 20px; font-size: 20px"><b>$
                                     <?php
-                                        echo $prod->searchresultgroups[0]->products->product[0]->price->regular->value;
+                                        if(isset($prod->searchresultgroups[0]->products->product[0]->price->regular->value)) {
+                                            echo $prod->searchresultgroups[0]->products->product[0]->price->regular->value;
+                                        } else {
+                                            echo 49.99;
+                                        }
                                     ?>
                                 </b>
                             </p>
