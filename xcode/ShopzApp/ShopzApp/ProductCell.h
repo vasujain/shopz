@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RecommendationCollectionModel.h"
 
 @class ProductModel;
 @interface ProductCell : UITableViewCell
@@ -22,6 +23,7 @@
 ///Group count label.
 @property (weak, nonatomic) IBOutlet UILabel *groupCountLabel;
 
+@property (strong, nonatomic) RecommendationCollectionModel* productRecommendations;
 //Configure the internal views with the given information.
 -(void)configureWithProductModel:(ProductModel *)product;
 

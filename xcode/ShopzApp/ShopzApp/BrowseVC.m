@@ -49,6 +49,7 @@
     NSString *identifier = NSStringFromClass([ProductCell class]);
     UINib *nib = [UINib nibWithNibName:identifier bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:identifier];
+    self.navigationItem.title = @"Products";
 //    [self startFakeItems];
     
 
@@ -171,7 +172,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    Product *product = self.products[indexPath.row];
     ProductModel* selectedProduct = self.searchResults.products[indexPath.row];
-    [self showProductDetails:selectedProduct];
+    ProductCell* cell = (ProductCell *)[(UITableView *)self.tableView cellForRowAtIndexPath:indexPath];
+    RecommendationCollectionModel* recos = cell.productRecommendations;
+    [self showProductDetails:selectedProduct recos:recos];
 }
 
 #pragma mark button methods
@@ -201,10 +204,13 @@
    
 }
 
--(void)showProductDetails:(ProductModel *)product {
+-(void)showProductDetails:(ProductModel *)product
+                    recos: (RecommendationCollectionModel*) recos{
 
     ProductDetailsTVC *controller = [[ProductDetailsTVC alloc]initWithTableViewStyle:UITableViewStyleGrouped];
     [controller setProduct:product];
+    [controller setProductRecommendations:recos];
+
     UINavigationController *navcontroller = [[UINavigationController alloc]initWithRootViewController:controller];
     navcontroller.navigationBar.translucent = NO;
     [navcontroller.navigationBar setBarTintColor:[UIColor whiteColor]];
@@ -240,11 +246,11 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
-                self.isLoading = false;
+            [self hideSpinner];
         });
     } failure:^(NSError *error) {
         NSLog(@"error: %@", error);
-        self.isLoading = false;
+        [self hideSpinner];
 
     }];
     

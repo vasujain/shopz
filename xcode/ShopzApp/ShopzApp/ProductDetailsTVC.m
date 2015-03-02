@@ -33,12 +33,15 @@
 @property (nonatomic,strong) ProductReviewCell *prototypeCell;
 ///Buy button
 @property (nonatomic,strong) UIButton *buyButton;
+
+@property (nonatomic, strong)UIRefreshControl* refreshControl;
+
 @end
 
 @implementation ProductDetailsTVC
 
 
-#define HEADER_HEIGHT 460
+#define HEADER_HEIGHT 222
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,6 +55,29 @@
     [self.tableView registerNib:nib forCellReuseIdentifier:identifier];
     [self createBuyButton];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor blueColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadRecos)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
+
+    
+}
+
+- (void)reloadRecos
+{
+    // Reload table data
+    [self.tableView reloadData];
+    
+    NSLog(@"reloading Recos");
+    // End the refreshing
+    if (self.refreshControl) {
+        
+        NSLog(@"sending queries");
+        [self queryRecommendations];
+    }
 }
 
 -(void)queryRecommendations
@@ -67,6 +93,18 @@
                                               dispatch_async(dispatch_get_main_queue(), ^{
                                                   
                                                   [weakSelf.tableView reloadData];
+                                                  if(weakSelf.product.regularPrice != nil)
+                                                      [weakSelf.buyButton setTitle: [NSString stringWithFormat:@"$%@", weakSelf.product.regularPrice ] forState:UIControlStateNormal];
+                                                  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                                                  [formatter setDateFormat:@"MMM d, h:mm a"];
+                                                  NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+                                                  NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                                                              forKey:NSForegroundColorAttributeName];
+                                                  NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+                                                  weakSelf.refreshControl.attributedTitle = attributedTitle;
+                                                  
+                                                  [weakSelf.refreshControl endRefreshing];
+
                                                   
                                               });
                                           } failure:^(NSError *error) {
@@ -78,9 +116,14 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+  [self queryRecommendations];
+    [self createReviewsWithRecommendationCollection: self.productRecommendations];
+
+    [self.tableView reloadData];
+    [self.buyButton setTitle: [NSString stringWithFormat:@"$%@", self.product.regularPrice ] forState:UIControlStateNormal];
+
+    //Refresh latest recommendations
     [self queryRecommendations];
-//    [self.tableView reloadData];
-//    [self createFakeReviews];
 }
 
 -(void)createBuyButton {

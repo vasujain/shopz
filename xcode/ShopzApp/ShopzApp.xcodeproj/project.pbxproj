@@ -22,6 +22,7 @@
 		44F343FCA8DC3549078238FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C21BC951894E7AB7A7E71730 /* libPods.a */; };
 		973B3D671AA2F86900461518 /* AuthenticationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 973B3D661AA2F86900461518 /* AuthenticationHelper.m */; };
 		973B3D6A1AA2F8A500461518 /* TwitterAuthHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 973B3D691AA2F8A500461518 /* TwitterAuthHelper.m */; };
+		975993351AA3D0CC000562D8 /* DummyProducts.json in Resources */ = {isa = PBXBuildFile; fileRef = 975993341AA3D0CC000562D8 /* DummyProducts.json */; };
 		975EC2141AA19F7D009EE6F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 975EC2131AA19F7D009EE6F0 /* main.m */; };
 		975EC2171AA19F7D009EE6F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 975EC2161AA19F7D009EE6F0 /* AppDelegate.m */; };
 		975EC21A1AA19F7D009EE6F0 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 975EC2191AA19F7D009EE6F0 /* HomeVC.m */; };
@@ -97,6 +98,7 @@
 		973B3D661AA2F86900461518 /* AuthenticationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationHelper.m; sourceTree = "<group>"; };
 		973B3D681AA2F8A500461518 /* TwitterAuthHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterAuthHelper.h; sourceTree = "<group>"; };
 		973B3D691AA2F8A500461518 /* TwitterAuthHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterAuthHelper.m; sourceTree = "<group>"; };
+		975993341AA3D0CC000562D8 /* DummyProducts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DummyProducts.json; sourceTree = "<group>"; };
 		975EC20E1AA19F7D009EE6F0 /* ShopzApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopzApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		975EC2121AA19F7D009EE6F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		975EC2131AA19F7D009EE6F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			children = (
 				975EC2121AA19F7D009EE6F0 /* Info.plist */,
 				975EC2131AA19F7D009EE6F0 /* main.m */,
+				975993341AA3D0CC000562D8 /* DummyProducts.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				97C9BA811AA2AEB100E1041A /* ProductReviewCell.xib in Resources */,
 				97B091E71AA1E0900096A222 /* PickerController.xib in Resources */,
 				975EC2221AA19F7D009EE6F0 /* LaunchScreen.xib in Resources */,
+				975993351AA3D0CC000562D8 /* DummyProducts.json in Resources */,
 				97C9BA7B1AA27F1A00E1041A /* ProductDetailHeaderView.xib in Resources */,
 				97C9BA6A1AA24D0A00E1041A /* ProductCell.xib in Resources */,
 				97B091D41AA1CAF50096A222 /* AuthenticationVC.xib in Resources */,

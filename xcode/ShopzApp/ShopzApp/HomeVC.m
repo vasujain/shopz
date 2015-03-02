@@ -20,8 +20,8 @@
 ///Label with the title question
 //@property (nonatomic,strong) UILabel *questionLabel;
 @property (nonatomic,strong) UITextField *questionLabel;
-///Free text textfield. Non editable.
-@property (nonatomic,strong) UITextField *searchTextField;
+/////Free text textfield. Non editable.
+//@property (nonatomic,strong) UITextField *searchTextField;
 ///Triggers the choose categories button.
 @property (nonatomic,strong) UIButton *chooseCategoryButton;
 ///Triggers the search.
@@ -67,6 +67,7 @@
         [_questionLabel setFont:[UIFont fontWithName:FONT_REGULAR size:18]];
         [_questionLabel setTextColor:[UIColor darkGrayColor]];
         [_questionLabel setPlaceholder:@"Enter search query"];
+        [_questionLabel setTextAlignment:NSTextAlignmentCenter];
         [_questionLabel positionHeight:40];
     }
     return _questionLabel;
@@ -92,18 +93,19 @@
     return _chooseCategoryButton;
 }
 
--(UITextField *)searchTextField {
-    if (!_searchTextField) {
-        _searchTextField = [[UITextField alloc]init];
-        _searchTextField.translatesAutoresizingMaskIntoConstraints = NO;
-        [_searchTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        [_searchTextField setFont:[UIFont fontWithName:FONT_REGULAR size:18]];
-        [_searchTextField setTextColor:[UIColor darkGrayColor]];
-        [_searchTextField setPlaceholder:@"Select a category"];
-        [_searchTextField positionHeight:40];
-    }
-    return _searchTextField;
-}
+//-(UITextField *)searchTextField {
+//    if (!_searchTextField) {
+//        _searchTextField = [[UITextField alloc]init];
+//        _searchTextField.translatesAutoresizingMaskIntoConstraints = NO;
+//        [_searchTextField setBorderStyle:UITextBorderStyleRoundedRect];
+//        [_searchTextField setFont:[UIFont fontWithName:FONT_REGULAR size:18]];
+//        [_searchTextField setTextColor:[UIColor darkGrayColor]];
+//        [_searchTextField setPlaceholder:@"Select a category"];
+//        [_searchTextField setTextAlignment:NSTextAlignmentCenter];
+//        [_searchTextField positionHeight:40];
+//    }
+//    return _searchTextField;
+//}
 
 -(UIButton *)submitSearchButton {
     if (!_submitSearchButton) {
@@ -154,6 +156,7 @@
     [self.view addConstraints:[self.chooseCategoryButton positionAlignTrailingEdgeOfSuperViewWithPadding: 20]];
     //make the button half the width of the search
     [self.view addConstraints:[self.chooseCategoryButton sameWidthWithOtherView:self.chooseCategoryButton withRatio:1]];
+    [self.chooseCategoryButton positionHeight:44];
     //add the submit search button aligning edges with the textfield and the button.
     [self.view addSubview:self.submitSearchButton];
     [self.view addConstraints:[self.submitSearchButton positionBelowOtherView:self.chooseCategoryButton withPadding:10]];
@@ -211,7 +214,7 @@
 -(void)submitSearchPressed {
     BrowseVC *controller = [[BrowseVC alloc]initWithTableViewStyle:UITableViewStyleGrouped];
     [controller setStore:[self.selectedInfo objectForKey:PICKER_ID_KEY]];
-    [controller setCategory:self.searchTextField.text];
+    [controller setCategory:self.questionLabel.text];
     [controller setSearchString:self.questionLabel.text];
     [self.navigationController pushViewController:controller animated:YES];
 }

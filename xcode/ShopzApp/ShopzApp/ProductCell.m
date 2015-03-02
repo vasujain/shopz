@@ -34,7 +34,7 @@
 //    [self.productImageView setImage:[UIImage imageNamed:product.productImageURLString]];
     __weak ProductCell *weakCell = self;
     NSURLRequest *request = [NSURLRequest requestWithURL:product.largeFrontImage];
-    UIImage *placeholderImage = [UIImage imageNamed:@"shoes"];
+    UIImage *placeholderImage = [UIImage imageNamed:@"placeholder"];
     [self.productImageView setImageWithURLRequest:request
                                  placeholderImage:placeholderImage
                                    success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -53,6 +53,7 @@
                                           success:^(id responseObject) {
         
         RecommendationCollectionModel* searchResults = (RecommendationCollectionModel*) responseObject;
+          weakCell.productRecommendations = searchResults;
         NSLog(@"output : %@" , searchResults.toJSONString);
         
         //Update UI on main queue

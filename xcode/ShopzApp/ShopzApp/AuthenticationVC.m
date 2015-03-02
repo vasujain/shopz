@@ -21,7 +21,11 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     [self.facebookButton setBackgroundColor:BLUE_TINT_COLOR];
+    self.facebookButton.layer.cornerRadius = 3.0f;
+    self.facebookButton.clipsToBounds = YES;
     [self.twitterButton setBackgroundColor:BLUE_TINT_COLOR];
+    self.twitterButton.layer.cornerRadius = 3.0f;
+    self.twitterButton.clipsToBounds = YES;
     [[AuthenticationHelper sharedInstance] setDelegate:self];
 }
 
@@ -38,16 +42,11 @@
 
 #pragma mark button methods
 - (IBAction)fbButtonPressed:(UIButton *)sender {
-    //[ApplicationDelegate showLoggedInViews];
-#warning removed for testing
     [self showSpinner];
     [[AuthenticationHelper sharedInstance] loginWithFB];
 }
 
 - (IBAction)twitterButtonPressed:(UIButton *)sender {
-//    [ApplicationDelegate showLoggedInViews];
-
-#warning removed for testing
     [self showSpinner];
     [[AuthenticationHelper sharedInstance] loginWithTwitter];
 }

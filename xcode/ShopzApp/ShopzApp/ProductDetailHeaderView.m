@@ -191,6 +191,8 @@ const static NSString* RecommendationUrl = @"http://brk.im/src/launch/survey/?";
     NSLog(@"accessToken: %@", sessionActive.accessTokenData.accessToken);
     
     NSString* recLink = [NSString stringWithFormat:@"%@&pid=%@", RecommendationUrl, self.product.sku ];
+
+    NSLog(@"posting link: %@", recLink);
     
     NSMutableDictionary* paramsSend = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        @"Feedback request from ShopZ",  @"caption",

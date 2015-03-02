@@ -7,12 +7,14 @@
 //
 
 #import "MasterTVC.h"
+#import "RecommendationCollectionModel.h"
 
 @class ProductModel;
 @interface ProductDetailsTVC : MasterTVC
 
 ///Product to display.
 @property (nonatomic,strong) ProductModel *product;
+@property (nonatomic,strong) RecommendationCollectionModel* productRecommendations;
 
 - (IBAction)buyButtonPressed:(UIButton *)sender;
 

@@ -4,25 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--CartVC-->
-        <scene sceneID="3U7-OK-JkY">
-            <objects>
-                <viewController id="mI8-fz-pdE" customClass="CartVC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aWI-70-9bQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="pMJ-Qn-Ysz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SWt-WW-IM5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="S2S-sL-gPU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e7I-PT-DWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1331" y="676"/>
-        </scene>
         <!--LikedVC-->
         <scene sceneID="ABD-DP-j3c">
             <objects>
@@ -99,25 +80,6 @@
             </objects>
             <point key="canvasLocation" x="519" y="14"/>
         </scene>
-        <!--Cart-->
-        <scene sceneID="8Ug-RC-Zh4">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FgK-se-AqB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Cart" image="cart" id="s6L-OJ-Djb"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IaJ-jx-ue3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mI8-fz-pdE" kind="relationship" relationship="rootViewController" id="yPA-f0-PIM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Err-Kl-7kj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="519" y="676"/>
-        </scene>
         <!--Liked-->
         <scene sceneID="E72-Qa-HU6">
             <objects>
@@ -139,7 +101,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart" width="26" height="28"/>
         <image name="home" width="28" height="28"/>
         <image name="like" width="26" height="26"/>
     </resources>

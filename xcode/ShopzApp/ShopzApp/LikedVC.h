@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Shopz. All rights reserved.
 //
 
-#import "MasterVC.h"
+#import "MasterTVC.h"
 
-@interface LikedVC : MasterVC
+@interface LikedVC : MasterTVC
 
 @end

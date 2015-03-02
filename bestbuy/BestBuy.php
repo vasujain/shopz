@@ -25,6 +25,13 @@ class BestBuy {
         return $content;
     }
 
+    function getProductDetailsBySku($sku) {
+        $defaultSearch = "(sku=" . $sku . ")";
+        $url = self::PRODUCTS_SEARCH_URL . $defaultSearch . self::API_FORMAT_KEY . self::API_KEY. self::PRODUCTS_SEARCH_RESULT_PARAMS;
+        $content = file_get_contents($url);
+        return $content;
+    }
+
     function getCategories() {
         $content = file_get_contents(self::CATEGORY_URL . self::API_FORMAT_KEY . self::API_KEY);
         return $content;

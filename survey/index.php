@@ -70,39 +70,58 @@
                     </div>
                 </div>
                 <?php
-                    require '../macys/Macys.php';
-                    $macysObj = new Macys();
-                    $prod = json_decode($macysObj->searchCatalog($_GET['pid']));
+                    if(($_GET['store'] == "bestbuy") || true) {
+                        require '../bestbuy/BestBuy.php';
+                        $bbObj = new BestBuy();
+                        $bbProd = json_decode($bbObj->getProductDetailsBySku($_GET['pid'])); //7619002
+
+                        $image = $bbProd->products[0]->image;
+                        $productName = $bbProd->products[0]->name;
+                        $productSummary = $bbProd->products[0]->shortDescription;
+                        $price = $bbProd->products[0]->salePrice;
+                        $productUrl = $bbProd->products[0]->url;
+                    } else if ($_GET['store'] == "macys") {
+                        require '../macys/Macys.php';
+                        $macysObj = new Macys();
+                        $prod = json_decode($macysObj->searchCatalog($_GET['pid']));
+
+                        $image = $prod->searchresultgroups[0]->products->product[0]->image[0]->imageurl;
+                        $productName = $prod->searchresultgroups[0]->products->product[0]->summary->brand . ", " . $prod->searchresultgroups[0]->products->product[0]->summary->producttype;
+                        $productSummary = $prod->searchresultgroups[0]->products->product[0]->summary->name;
+                        $price = $prod->searchresultgroups[0]->products->product[0]->price->regular->value;
+                        $productUrl = $prod->searchresultgroups[0]->products->product[0]->summary->producturl;
+                    }
+//                    //"http://api.remix.bestbuy.com/v1/products(sku=7619002)?show=sku,name&pageSize=15&page=5&apiKey=YourAPIKey&format=json";
                     // print_r($prod->searchresultgroups[0]->products->product[0]);
                 ?>
                 <div class="col-sm-4">
                     <div class="team-member">
-                        <img src="<?php echo $prod->searchresultgroups[0]->products->product[0]->image[0]->imageurl; ?>" class="img-responsive img-square" alt="">
+                        <img src="<?php echo $image ?>" class="img-responsive img-square" alt="">
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="team-member">
                         <h3>
                             <?php
-                                echo $prod->searchresultgroups[0]->products->product[0]->summary->brand . ", " . $prod->searchresultgroups[0]->products->product[0]->summary->producttype ;
+                                echo $productName ;
                             ?>
                         </h3>
                         <h4>
                             <?php
-                            echo $prod->searchresultgroups[0]->products->product[0]->summary->name ;
+                            echo $productSummary ;
                             ?>
                             <p class="text-muted" style="padding-top: 20px; font-size: 20px"><b>$
                                     <?php
-                                        if(isset($prod->searchresultgroups[0]->products->product[0]->price->regular->value)) {
-                                            echo $prod->searchresultgroups[0]->products->product[0]->price->regular->value;
+                                        if(isset($price)) {
+                                            echo $price;
                                         } else {
-                                            echo 49.99;
+                                            echo "Price N/A";
                                         }
                                     ?>
                                 </b>
                             </p>
                             <p>
-                                <a href="<?php echo $prod->searchresultgroups[0]->products->product[0]->summary->producturl;?>">Product URL</a>
+                                <a href="<?php echo $productUrl;?>">Product URL</a>
                             </p>
                         </h4>
                         <p class="text-muted"></p>

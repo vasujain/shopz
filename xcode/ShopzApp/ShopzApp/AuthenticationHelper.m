@@ -77,12 +77,12 @@ static NSString * const kFirebaseURL = @"https://intense-fire-2616.firebaseio.co
     
     
     [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObjects: @"publish_actions",@"public_profile", nil]
-                                        defaultAudience:FBSessionDefaultAudienceEveryone
-                                        allowLoginUI:YES
-                                      completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
-                                      if (error) {
-                                          
-                                          NSLog(@"Facebook login failed. Error: %@", error);
+                                       defaultAudience:FBSessionDefaultAudienceEveryone
+                                          allowLoginUI:YES
+                                     completionHandler:^(FBSession *session, FBSessionState state, NSError *error) {
+                                         if (error) {
+                                             
+                                             NSLog(@"Facebook login failed. Error: %@", error);
                                           [self.delegate authenticationHelper:self failedToLoginwithError:error];
                                           
                                       } else if (state == FBSessionStateOpen) {
