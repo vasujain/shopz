@@ -26,3 +26,5 @@ The Recommendation feature Ability to offload decision making to get help during
 
 How we would make money:
 Affiliate Marketing Ads
+
+http://challengepost.com/software/47459
